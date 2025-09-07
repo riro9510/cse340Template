@@ -1,0 +1,24 @@
+#top-header {
+    padding: 1rem 2rem;
+}
+
+.siteName {
+    font-size: 2rem; 
+}
+
+#tools {
+    gap: 2rem;
+}
+body{
+  background-image: url('../images/site/checkerboard.jpg');
+  padding: 50px;
+}
+  .hero {
+    text-align: left;       
+    align-items: flex-start; 
+    padding-left: 4rem;      
+  }
+  .hero-content {
+    margin: 0;                
+    max-width: 500px;         
+  }
