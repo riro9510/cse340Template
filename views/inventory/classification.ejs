@@ -1,0 +1,16 @@
+<!--
+Line 1 - uses a EJS code block to contain a JavaScript if structure to determine if a "title" variable exists.
+Line 2 - if the variable exists, it is displayed within an <h1> element.
+Line 3 - ends the if structure and begins an else structure.
+Line 4 - redirects the response object to the default index route, to deliver the home
+-->
+
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%# messages() %>
+
+<%- grid %>
