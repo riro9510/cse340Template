@@ -6,7 +6,7 @@ Line 4 - redirects the response object to the default index route, to deliver th
 -->
 
 <% if (title) { %>
-<h1><%= title %></h1>
+<h1 class="title"><%= title %></h1>
 <% } else {
   res.redirect('/')
 } %>

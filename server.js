@@ -24,12 +24,13 @@ app.set("layout", "./layouts/layout")
 /* ***********************
  * Routes
  *************************/
-app.use(static)
-app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", inventoryRoute)
+app.use(static);
+app.get("/", utilities.handleErrors(baseController.buildHome));
+app.use("/inv", inventoryRoute);
+
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+});
 
 /* ***********************
  * Local Server Information
@@ -45,7 +46,15 @@ const host = process.env.HOST
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  let message
+  let status = err.status || 500
+  
+  if (status == 404) {
+    message = err.message
+  } else {
+    // Para errores 500, muestra el mensaje específico del error
+    message = err.message || 'Oh no! There was a crash. Maybe try a different route?'
+  }
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,

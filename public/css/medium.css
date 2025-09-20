@@ -22,3 +22,51 @@ body{
     margin: 0;                
     max-width: 500px;         
   }
+#inv-display {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #inv-display li {
+    padding: 20px;
+  }
+
+  #inv-display li .namePrice {
+    font-size: 16px;
+  }
+
+  #inv-display li .namePrice h2 {
+    font-size: 20px;
+  }
+
+  #inv-display li .namePrice span {
+    font-size: 18px;
+  }
+  .error-container {
+    padding: 2rem;
+  }
+
+  .error-content {
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .error-title {
+    font-size: 3rem;
+  }
+
+  .error-message {
+    font-size: 1.25rem;
+  }
+
+  .error-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  .vehicle-detail {
+        grid-template-columns: 1fr 1fr;
+        align-items: center; 
+    }
+    
+    .vehicle-image-container {
+        min-height: 500px;
+    }

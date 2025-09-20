@@ -49,3 +49,6 @@ table {
 body{
   background-image: url('../images/site/small_check.png');
 }
+#wrapper {
+ background-color: white;
+}
