@@ -1,0 +1,47 @@
+
+
+<div class="form-container">
+    <h1>Add New Classification</h1>
+    
+    <!-- Flash Messages -->
+    <% if (typeof messages !== 'undefined' && messages) { %>
+        <div class="flash-messages">
+            <% if (messages.error) { %>
+                <div class="flash-message error">
+                    <%= Array.isArray(messages.error) ? messages.error.join(', ') : messages.error %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <form class="classification-form" action="/inv/management/add-classification" method="POST">
+        <div class="form-group">
+            <label for="classification_name" class="form-label">Classification Name *</label>
+            <input 
+                type="text" 
+                id="classification_name" 
+                name="classification_name" 
+                class="form-input" 
+                required
+                pattern="^[a-zA-Z0-9]+$"
+                title="Classification name cannot contain spaces or special characters"
+                value="<%= classification_name %>"
+                placeholder="Enter classification name (e.g., SUV, Sedan, Truck)"
+            >
+            <small class="form-help">
+                Requirements: 
+                <ul>
+                    <li>No spaces or special characters allowed</li>
+                    <li>Must be at least 2 characters long</li>
+                    <li>Must be unique</li>
+                </ul>
+            </small>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="submit" class="btn-primary">Add Classification</button>
+            <a href="/inv/management" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+

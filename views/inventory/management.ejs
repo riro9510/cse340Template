@@ -1,0 +1,35 @@
+
+<div class="management-container">
+    <h1>Inventory Management</h1>
+    
+    <!-- Flash Messages -->
+    <% if (typeof messages !== 'undefined' && messages) { %>
+        <div class="flash-messages">
+            <% if (messages.error) { %>
+                <div class="flash-message error">
+                    <%= Array.isArray(messages.error) ? messages.error.join(', ') : messages.error %>
+                </div>
+            <% } %>
+            <% if (messages.success) { %>
+                <div class="flash-message success">
+                    <%= Array.isArray(messages.success) ? messages.success.join(', ') : messages.success %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <div class="management-links">
+        <div class="management-link-card">
+            <h2>Add New Classification</h2>
+            <p>Create a new vehicle classification</p>
+            <a href="/inv/management/add-classification" class="btn-primary">Add Classification</a>
+        </div>
+        
+        <div class="management-link-card">
+            <h2>Add New Vehicle</h2>
+            <p>Add a new vehicle to inventory</p>
+            <a href="/inv/management/add-inventory" class="btn-primary">Add Vehicle</a>
+        </div>
+    </div>
+</div>
+

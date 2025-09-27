@@ -1,0 +1,101 @@
+ <%# Flash messages usando express-messages %>
+    <% if (typeof messages !== 'undefined' && Object.keys(messages).length > 0) { %>
+        <div class="flash-messages">
+            <% if (messages.error && messages.error.length > 0) { %>
+                <div class="flash-message error">
+                    <%= messages.error %>
+                </div>
+            <% } %>
+            <% if (messages.success && messages.success.length > 0) { %>
+                <div class="flash-message success">
+                    <%= messages.success %>
+                </div>
+            <% } %>
+            <% if (messages.info && messages.info.length > 0) { %>
+                <div class="flash-message info">
+                    <%= messages.info %>
+                </div>
+            <% } %>
+            <% if (messages.warning && messages.warning.length > 0) { %>
+                <div class="flash-message warning">
+                    <%= messages.warning %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <div class="login-container">
+        <form class="login-form" action="/account/register" method="POST">
+            <div class="form-group">
+                <label for="account_firstname" class="form-label">First Name</label>
+                <input 
+                    type="text" 
+                    id="account_firstname" 
+                    name="account_firstname" 
+                    class="form-input" 
+                    required value="<%= locals.account_firstname %>">
+            
+            <div class="form-group">
+                <label for="account_lastname" class="form-label">Last Name</label>
+                <input 
+                    type="text" 
+                    id="account_lastname" 
+                    name="account_lastname" 
+                    class="form-input" 
+                    required
+                    <% if (typeof account_lastname !== 'undefined') { %>
+                        value="<%= account_lastname %>"
+                    <% } %>
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="account_email" class="form-label">Email Address</label>
+                <input 
+                    type="email" 
+                    id="account_email" 
+                    name="account_email" 
+                    class="form-input" 
+                    required
+                    <% if (typeof account_email !== 'undefined') { %>
+                        value="<%= account_email %>"
+                    <% } %>
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="account_password" class="form-label">Password</label>
+                <input 
+                    type="password" 
+                    id="account_password" 
+                    name="account_password" 
+                    class="form-input" 
+                    required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+                    title="Password must be at least 12 characters long, contain at least 1 capital letter, 1 number, and 1 special character"
+                >
+                <div class="password-requirements">
+                    <small>Password must meet the following requirements:</small>
+                    <ul class="requirements-list">
+                        <li>At least 12 characters long</li>
+                        <li>Contains at least 1 capital letter</li>
+                        <li>Contains at least 1 number</li>
+                        <li>Contains at least 1 special character</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-primary login-btn">Register</button>
+        </form>
+        
+        <div class="register-link">
+            <p>Already have an account? <a href="/account/login" class="link">Login here</a></p>
+        </div>
+    </div>
+    <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>

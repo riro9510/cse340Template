@@ -1,0 +1,164 @@
+
+
+<div class="form-container">
+    <h1>Add New Vehicle</h1>
+    
+    <!-- Flash Messages -->
+    <% if (typeof messages !== 'undefined' && messages) { %>
+        <div class="flash-messages">
+            <% if (messages.error) { %>
+                <div class="flash-message error">
+                    <%= Array.isArray(messages.error) ? messages.error.join(', ') : messages.error %>
+                </div>
+            <% } %>
+            <% if (messages.success) { %>
+                <div class="flash-message success">
+                    <%= Array.isArray(messages.success) ? messages.success.join(', ') : messages.success %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <form class="inventory-form" action="/inv/management/add-inventory" method="POST">
+        <!-- Basic Vehicle Info -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inv_make" class="form-label">Make *</label>
+                <input 
+                    type="text" 
+                    id="inv_make" 
+                    name="inv_make" 
+                    class="form-input" 
+                    required
+                    minlength="2"
+                    value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_model" class="form-label">Model *</label>
+                <input 
+                    type="text" 
+                    id="inv_model" 
+                    name="inv_model" 
+                    class="form-input" 
+                    required
+                    minlength="2"
+                    value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_year" class="form-label">Year *</label>
+                <input 
+                    type="text" 
+                    id="inv_year" 
+                    name="inv_year" 
+                    class="form-input" 
+                    required
+                    pattern="[0-9]{4}"
+                    title="Please enter a valid 4-digit year"
+                    maxlength="4"
+                    value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>"
+                >
+            </div>
+        </div>
+
+        <!-- Classification -->
+        <div class="form-group">
+            <label for="classificationList" class="form-label">Classification *</label>
+            <%- classificationList %>
+        </div>
+
+        <!-- Price and Mileage -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inv_price" class="form-label">Price *</label>
+                <input 
+                    type="number" 
+                    id="inv_price" 
+                    name="inv_price" 
+                    class="form-input" 
+                    required
+                    min="0"
+                    step="1"
+                    value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_miles" class="form-label">Mileage *</label>
+                <input 
+                    type="number" 
+                    id="inv_miles" 
+                    name="inv_miles" 
+                    class="form-input" 
+                    required
+                    min="0"
+                    value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_color" class="form-label">Color *</label>
+                <input 
+                    type="text" 
+                    id="inv_color" 
+                    name="inv_color" 
+                    class="form-input" 
+                    required
+                    value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>"
+                >
+            </div>
+        </div>
+
+        <!-- Images -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inv_image" class="form-label">Image Path</label>
+                <input 
+                    type="text" 
+                    id="inv_image" 
+                    name="inv_image" 
+                    class="form-input" 
+                    value="<%= typeof inv_image !== 'undefined' ? inv_image : '/images/vehicles/no-image.jpg' %>"
+                    placeholder="/images/vehicles/your-image.jpg"
+                >
+                <small class="form-help">Leave blank to use default image</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_thumbnail" class="form-label">Thumbnail Path</label>
+                <input 
+                    type="text" 
+                    id="inv_thumbnail" 
+                    name="inv_thumbnail" 
+                    class="form-input" 
+                    value="<%= typeof inv_thumbnail !== 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.jpg' %>"
+                    placeholder="/images/vehicles/your-image-tn.jpg"
+                >
+                <small class="form-help">Leave blank to use default thumbnail</small>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="inv_description" class="form-label">Description *</label>
+            <textarea 
+                id="inv_description" 
+                name="inv_description" 
+                class="form-textarea" 
+                required
+                rows="5"
+                placeholder="Enter vehicle description..."
+            ><%= typeof inv_description !== 'undefined' ? inv_description : '' %></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-buttons">
+            <button type="submit" class="btn-primary">Add Vehicle</button>
+            <a href="/inv/management" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+

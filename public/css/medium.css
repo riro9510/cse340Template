@@ -70,3 +70,31 @@ body{
     .vehicle-image-container {
         min-height: 500px;
     }
+    .form-container {
+        max-width: 700px;
+        padding: 0 2rem;
+    }
+    
+    .management-container {
+        max-width: 900px;
+        padding: 0 2rem;
+    }
+    
+    .management-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .form-row {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .form-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    
+    .management-container h1 {
+        font-size: 2.5rem;
+    }

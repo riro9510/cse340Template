@@ -77,3 +77,18 @@ body{
     padding: 1.25rem 2.5rem;
     font-size: 1.5rem;
   }
+   .form-container {
+        max-width: 800px;
+    }
+    
+    .management-container {
+        max-width: 1200px;
+    }
+    
+    .management-links {
+        gap: 2.5rem;
+    }
+    
+    .management-link-card {
+        padding: 2rem;
+    }
