@@ -33,3 +33,29 @@
     </div>
 </div>
 
+<h2>Manage Inventory</h2>
+<p>Select a classification from the list to see the items in inventory.</p>
+
+<% if (typeof classificationList !== 'undefined' && classificationList.length > 0) { %>
+    <select id="classificationSelect">
+        <option value="">-- Select a Classification --</option>
+        <% classificationList.forEach(function(classification) { %>
+            <option value="<%= classification.classification_id %>">
+                <%= classification.classification_name %>
+            </option>
+        <% }); %>
+    </select>
+<% } else { %>
+    <p>No classifications available.</p>
+<% } %>
+
+
+<table id="inventoryDisplay"></table>
+
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>
+
+
+

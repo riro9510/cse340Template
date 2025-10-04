@@ -1,4 +1,7 @@
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 const Util = {}
 
 /* ************************
@@ -6,7 +9,7 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  console.log(data)
+  ////console.log(data)
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
@@ -142,6 +145,63 @@ Util.buildClassificationList = async function(classification_id = null) {
       return '<select name="classification_id" id="classificationList" required><option value="">Error loading classifications</option></select>'
     }
   }
+Util.checkJWTToken = async (req, res, next) => {
+  res.locals.loggedin = false
+  res.locals.accountData = null
+  res.locals.accountType = null
+
+  if (req.cookies.jwt) {
+    try {
+      jwt.verify(
+        req.cookies.jwt,
+        process.env.ACCESS_TOKEN_SECRET,
+        async function (err, accountData) {
+          if (err) {
+            req.flash("notice", "Please log in")
+            res.clearCookie("jwt")
+            res.locals.loggedin = false
+            res.locals.accountData = null
+            res.locals.accountType = null
+            return next()
+          }
+
+          const freshAccountData = await accountModel.getAccountById(accountData.account_id)
+          
+          if (freshAccountData) {
+            res.locals.accountData = freshAccountData
+            res.locals.loggedin = true
+            res.locals.accountType = freshAccountData.account_type
+          } else {
+            res.locals.loggedin = false
+            res.locals.accountData = null
+            res.locals.accountType = null
+            res.clearCookie("jwt")
+          }
+          next()
+        }
+      )
+    } catch (error) {
+      console.error('JWT verification error:', error)
+      res.locals.loggedin = false
+      res.locals.accountData = null
+      res.locals.accountType = null
+      res.clearCookie("jwt")
+      next()
+    }
+  } else {
+    next()
+  }
+}
+Util.checkLogin = (req, res, next) => {
+  //console.log("🔐 checkLogin middleware - loggedin:", res.locals.loggedin) 
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    //console.log("❌ Not logged in, redirecting to login")
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
 
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 

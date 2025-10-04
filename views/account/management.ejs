@@ -1,0 +1,47 @@
+
+      <h1 class="title"><%= title %></h1>
+        
+        <%# Flash messages %>
+        <% if (typeof messages !== 'undefined' && Object.keys(messages).length > 0) { %>
+            <div class="flash-messages">
+                <% Object.keys(messages).forEach(key => { %>
+                    <div class="flash-message <%= key %>">
+                        <%= messages[key] %>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+
+        <div class="account-management">
+            <% if (accountData) { %>
+                <h2>Welcome <%= accountData.account_firstname %></h2>
+
+                <div class="update-section">
+                    <a href="/account/update/<%= accountData.account_id %>" class="btn-update">
+                        Update Account Information
+                    </a>
+                </div>
+
+
+                <% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin') { %>
+                    <div class="inventory-section">
+                        <h3>Inventory Management</h3>
+                        <p>
+                            <a href="/inv/management" class="btn-inventory">
+                                Access Inventory Management
+                            </a>
+                        </p>
+                    </div>
+                <% } %>
+
+                <div class="account-info">
+                    <h3>Account Information</h3>
+                    <p><strong>Name:</strong> <%= accountData.account_firstname %> <%= accountData.account_lastname %></p>
+                    <p><strong>Email:</strong> <%= accountData.account_email %></p>
+                    <p><strong>Account Type:</strong> <%= accountData.account_type %></p>
+                </div>
+
+            <% } else { %>
+                <p>Please log in to access your account.</p>
+            <% } %>
+        </div>

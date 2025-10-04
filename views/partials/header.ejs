@@ -3,6 +3,15 @@
         <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
-        <a href="/account/login" title="Click to log in">My Account</a>
+        <% if (loggedin) { %>
+            <%# Usuario LOGUEADO - mostrar Welcome y Logout %>
+            <a href="/account" class="welcome-link" title="Manage your account">
+                Welcome <%= accountData.account_firstname %>
+            </a>
+            <a href="/account/logout" title="Click to log out">Logout</a>
+        <% } else { %>
+            <%# Usuario NO logueado - mostrar My Account %>
+            <a href="/account/login" title="Click to log in">My Account</a>
+        <% } %>
     </div>
 </header>

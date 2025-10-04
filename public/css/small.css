@@ -729,3 +729,207 @@ select.form-input {
     background-size: 12px;
     padding-right: 2.5rem;
 }
+
+/* this file is now huge, this section is for account managment*/
+.account-management {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.account-management h2 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.account-management h3 {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.update-section {
+    background: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--color-primary);
+}
+
+.btn-update {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-update:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-section {
+    background: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--color-secondary);
+}
+
+.btn-inventory {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-inventory:hover {
+    background-color: var(--color-secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.account-info {
+    background: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.account-info p {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.account-info strong {
+    color: var(--color-text);
+    min-width: 120px;
+    display: inline-block;
+}
+
+
+.update-account {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.account-form,
+.password-form {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-form h2,
+.password-form h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.password-form {
+    border-left: 4px solid var(--color-accent);
+}
+
+.password-requirements {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background: var(--color-surface-alt);
+    border-radius: 4px;
+    border-left: 3px solid var(--color-info);
+}
+
+.password-requirements small {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.requirements-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.85rem;
+}
+
+.requirements-list li {
+    list-style-type: circle;
+    color: var(--color-muted);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.errors {
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid var(--color-error);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.errors ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.errors li {
+    color: var(--color-error);
+    margin-bottom: 0.5rem;
+}
+
+/* Form Input Focus States */
+.account-form .form-input:focus,
+.password-form .form-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.2);
+}
+
+.password-form .form-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.2);
+}
+
+
+.account-form .btn-primary,
+.password-form .btn-primary {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.account-form .btn-primary {
+    background-color: var(--color-primary);
+}
+
+.account-form .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.password-form .btn-primary {
+    background-color: var(--color-accent);
+}
+
+.password-form .btn-primary:hover {
+    background-color: #e91e63; 
+}

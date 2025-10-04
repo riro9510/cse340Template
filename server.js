@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const pool = require('./database/')
 const express = require("express")
@@ -33,6 +34,9 @@ const managementRoute = require("./routes/managementRoute")
   name: 'sessionId',
 }))
 
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
+
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
@@ -49,9 +53,13 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
 
 
+
 /* ***********************
  * Routes
  *************************/
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
 app.use(static);
 app.get("/", utilities.handleErrors(baseController.buildHome));
 app.use("/account/", login);

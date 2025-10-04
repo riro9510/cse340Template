@@ -5,17 +5,21 @@ const validate = require("../utilities/classification-validation")
 const managementController = {
 
   buildManagement: async function(req, res, next) {
-    try {
-      let nav = await utilities.getNav()
-      res.render("inventory/management", {
-        title: "Inventory Management",
-        nav,
-        messages: req.flash()
-      })
-    } catch (error) {
-      next(error)
-    }
-  },
+  try {
+    let nav = await utilities.getNav()
+    let classificationList = await utilities.buildClassificationList() 
+
+    res.render("inventory/management", {
+      title: "Inventory Management",
+      nav,
+      classificationList,
+      messages: req.flash()
+    })
+  } catch (error) {
+    next(error)
+  }
+},
+
 
 
   buildAddClassification: async function(req, res, next) {

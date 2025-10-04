@@ -92,3 +92,10 @@ body{
     .management-link-card {
         padding: 2rem;
     }
+    .account-management {
+        max-width: 900px;
+    }
+    
+    .update-account {
+        max-width: 700px;
+    }

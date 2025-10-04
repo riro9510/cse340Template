@@ -1,0 +1,91 @@
+<div class="form-container">
+    <h1>Modify Vehicle</h1>
+    
+    <% if (typeof messages !== 'undefined' && messages) { %>
+        <div class="flash-messages">
+            <% if (messages.error) { %>
+                <div class="flash-message error">
+                    <%= Array.isArray(messages.error) ? messages.error.join(', ') : messages.error %>
+                </div>
+            <% } %>
+            <% if (messages.success) { %>
+                <div class="flash-message success">
+                    <%= Array.isArray(messages.success) ? messages.success.join(', ') : messages.success %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <form class="inventory-form" action="/inv/delete/ " method="POST">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inv_make" class="form-label">Make *</label>
+                <input 
+                    readonly
+                    type="text" 
+                    id="inv_make" 
+                    name="inv_make" 
+                    class="form-input" 
+                    required
+                    minlength="2"
+                    value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_model" class="form-label">Model *</label>
+                <input 
+                    readonly
+                    type="text" 
+                    id="inv_model" 
+                    name="inv_model" 
+                    class="form-input" 
+                    required
+                    minlength="2"
+                    value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="inv_year" class="form-label">Year *</label>
+                <input 
+                    readonly
+                    type="text" 
+                    id="inv_year" 
+                    name="inv_year" 
+                    class="form-input" 
+                    required
+                    pattern="[0-9]{4}"
+                    title="Please enter a valid 4-digit year"
+                    maxlength="4"
+                    value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>"
+                >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inv_price" class="form-label">Price *</label>
+                <input 
+                    readonly
+                    type="number" 
+                    id="inv_price" 
+                    name="inv_price" 
+                    class="form-input" 
+                    required
+                    min="0"
+                    step="1"
+                    value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>"
+                >
+            </div>
+        </div>
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
+        <div class="form-buttons">
+            <button type="submit" class="btn-primary">delete  Vehicle</button>
+            <a href="/inv/management" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
