@@ -29,4 +29,9 @@ router.get("/management", utilities.checkLogin, utilities.handleErrors(accountCo
 
 router.post("/update", utilities.checkLogin, utilities.handleErrors(accountController.updateAccount))
 router.post("/update-password", utilities.checkLogin, utilities.handleErrors(accountController.updatePassword))
+
+router.get('/personnel', utilities.checkLogin,utilities.handleErrors(accountController.personnelManagement));
+router.post('/toggle-staff', utilities.checkLogin,utilities.handleErrors(accountController.toggleStaffStatus));
+router.post('/promote-to-employee', utilities.checkLogin,utilities.handleErrors(accountController.promoteToEmployee));
+router.post('/promote-to-client', utilities.checkLogin,utilities.handleErrors(accountController.promoteToClient));
 module.exports = router;

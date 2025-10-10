@@ -33,7 +33,16 @@
                         </p>
                     </div>
                 <% } %>
-
+                <% if (accountData.account_type === 'Admin') { %>
+                    <div class="personnel-section">
+                        <h3>Employee Management</h3>
+                        <p>
+                            <a href="/account/personnel" class="btn-personnel">
+                                Access Employee Management
+                            </a>
+                        </p>
+                    </div>
+                <% } %>
                 <div class="account-info">
                     <h3>Account Information</h3>
                     <p><strong>Name:</strong> <%= accountData.account_firstname %> <%= accountData.account_lastname %></p>

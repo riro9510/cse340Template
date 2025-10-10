@@ -1,0 +1,89 @@
+
+    <% if (typeof messages !== 'undefined' && Object.keys(messages).length > 0) { %>
+        <div class="flash-messages">
+            <% Object.keys(messages).forEach(key => { %>
+                <div class="flash-message <%= key %>">
+                    <%= messages[key] %>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <div class="personnel-management">
+        <div class="management-header">
+            <h2>Employee Management</h2>
+            <p>Manage staff permissions and roles</p>
+        </div>
+
+        <% if (employees && employees.length > 0) { %>
+            <div class="employees-table-container">
+                <table class="employees-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Account Type</th>
+                            <th>Staff Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% employees.forEach(employee => { %>
+                            <tr>
+                                <td>
+                                    <%= employee.account_firstname %> <%= employee.account_lastname %>
+                                </td>
+                                <td><%= employee.account_email %></td>
+                                <td>
+                                    <span class="account-type-badge <%= employee.account_type.toLowerCase() %>">
+                                        <%= employee.account_type %>
+                                    </span>
+                                </td>
+                                <td><% if (employee.account_type === 'Employee') { %>
+                                    <span class="staff-status <%= employee.is_staff ? 'staff' : 'non-staff' %>">
+                                        <%= employee.is_staff ? 'Staff' : 'Non-Staff' %>
+                                    </span>
+                                    <% } %>
+                                     
+                                </td>
+                                <td class="actions">
+                                     <% if (employee.account_type === 'Employee') { %>
+                                    <form action="/account/toggle-staff" method="POST" class="inline-form">
+                                        <input type="hidden" name="account_id" value="<%= employee.account_id %>">
+                                        <input type="hidden" name="current_status" value="<%= employee.is_staff %>">
+                                        <button type="submit" class="btn-toggle <%= employee.is_staff ? 'btn-demote' : 'btn-promote' %>">
+                                            <%= employee.is_staff ? 'Remove Staff' : 'Make Staff' %>
+                                        </button>
+                                    </form>
+                                    <% } %>
+                                    <% if (employee.account_type === 'Employee') { %>
+                                        <form action="/account/promote-to-client" method="POST" class="inline-form">
+                                            <input type="hidden" name="account_id" value="<%= employee.account_id %>">
+                                            <button type="submit" class="btn-demote" onclick="return confirm('Are you sure you want to change this employee to client?')">
+                                                Make Client
+                                            </button>
+                                        </form>
+                                    <% } else if (employee.account_type === 'Client') { %>
+                                        <form action="/account/promote-to-employee" method="POST" class="inline-form">
+                                            <input type="hidden" name="account_id" value="<%= employee.account_id %>">
+                                            <button type="submit" class="btn-promote" onclick="return confirm('Are you sure you want to make this client an employee?')">
+                                                Make Employee
+                                            </button>
+                                        </form>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="no-employees">
+                <p>No employees found.</p>
+            </div>
+        <% } %>
+        
+        <div class="management-actions">
+            <a href="/account" class="btn-secondary">Back to Account</a>
+        </div>
+    </div>

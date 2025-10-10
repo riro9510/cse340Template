@@ -110,3 +110,43 @@ body{
     .password-form {
         padding: 2.5rem;
     }
+
+    .personnel-management {
+        padding: 0 1rem;
+    }
+    
+    .management-header h2 {
+        font-size: 2rem;
+    }
+    
+    .employees-table {
+        font-size: 1rem;
+    }
+    
+    .employees-table th,
+    .employees-table td {
+        padding: 1rem;
+    }
+    
+    .actions {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .btn-toggle, 
+    .btn-promote, 
+    .btn-demote {
+        min-width: 120px;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .account-type-badge,
+    .staff-status {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+    }
+    
+    .employees-table-container {
+        border-radius: 8px;
+    }

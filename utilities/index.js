@@ -193,11 +193,11 @@ Util.checkJWTToken = async (req, res, next) => {
   }
 }
 Util.checkLogin = (req, res, next) => {
-  //console.log("🔐 checkLogin middleware - loggedin:", res.locals.loggedin) 
+  console.log("🔐 checkLogin middleware - loggedin:", res.locals.loggedin) 
   if (res.locals.loggedin) {
     next()
   } else {
-    //console.log("❌ Not logged in, redirecting to login")
+    console.log("❌ Not logged in, redirecting to login")
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }

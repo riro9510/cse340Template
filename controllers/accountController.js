@@ -312,4 +312,110 @@ async function updatePassword(req, res, next) {
     res.redirect("/account/update/" + req.body.account_id)
   }
 }
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, logout,buildUpdateView, updateAccount,updatePassword}
+async function personnelManagement (req, res, next) {
+    try {
+        if (res.locals.accountData.account_type !== 'Admin') {
+            req.flash('error', 'Unauthorized access');
+            return res.redirect('/account');
+        }
+
+        const employees = await accountModel.getAllEmployeesAndClients();
+        
+        res.render('account/personnel', {
+            title: 'Employee Management',
+            employees: employees,
+            nav: res.locals.nav,
+            messages: req.flash()
+        });
+    } catch (error) {
+        console.error('Error in personnelManagement:', error);
+        next(error);
+    }
+}
+
+async function toggleStaffStatus (req, res, next) {
+    try {
+        const { account_id, current_status } = req.body;
+        
+        if (res.locals.accountData.account_type !== 'Admin') {
+            req.flash('error', 'Unauthorized action');
+            return res.redirect('/account');
+        }
+
+        if (parseInt(account_id) === res.locals.accountData.account_id) {
+            req.flash('error', 'Cannot modify your own staff status');
+            return res.redirect('/account/personnel');
+        }
+
+        const newStatus = current_status === 'true' ? false : true;
+        const success = await accountModel.updateStaffStatus(account_id, newStatus);
+        
+        if (success) {
+            req.flash('success', 'Staff status updated successfully');
+        } else {
+            req.flash('error', 'Error updating staff status');
+        }
+        
+        res.redirect('/account/personnel');
+    } catch (error) {
+        console.error('Error in toggleStaffStatus:', error);
+        req.flash('error', 'Error updating staff status');
+        res.redirect('/account/personnel');
+    }
+}
+
+async function promoteToEmployee (req, res, next){
+    try {
+        const { account_id } = req.body;
+        
+        if (res.locals.accountData.account_type !== 'Admin') {
+            req.flash('error', 'Unauthorized action');
+            return res.redirect('/account');
+        }
+
+        const success = await accountModel.updateAccountType(account_id, 'Employee');
+        
+        if (success) {
+            req.flash('success', 'Account promoted to Employee successfully');
+        } else {
+            req.flash('error', 'Error promoting account');
+        }
+        
+        res.redirect('/account/personnel');
+    } catch (error) {
+        console.error('Error in promoteToEmployee:', error);
+        req.flash('error', 'Error promoting account');
+        res.redirect('/account/personnel');
+    }
+}
+
+ async function promoteToClient (req, res, next){
+    try {
+        const { account_id } = req.body;
+        
+        if (res.locals.accountData.account_type !== 'Admin') {
+            req.flash('error', 'Unauthorized action');
+            return res.redirect('/account');
+        }
+
+        if (parseInt(account_id) === res.locals.accountData.account_id) {
+            req.flash('error', 'Cannot modify your own account type');
+            return res.redirect('/account/personnel');
+        }
+
+        const success = await accountModel.updateAccountType(account_id, 'Client');
+        
+        if (success) {
+            req.flash('success', 'Account changed to Client successfully');
+        } else {
+            req.flash('error', 'Error changing account type');
+        }
+        
+        res.redirect('/account/personnel');
+    } catch (error) {
+        console.error('Error in promoteToClient:', error);
+        req.flash('error', 'Error changing account type');
+        res.redirect('/account/personnel');
+    }
+}
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, logout,buildUpdateView, updateAccount,updatePassword,personnelManagement,toggleStaffStatus,promoteToEmployee,promoteToClient }

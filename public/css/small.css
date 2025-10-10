@@ -933,3 +933,195 @@ select.form-input {
 .password-form .btn-primary:hover {
     background-color: #e91e63; 
 }
+
+/* ===== PERSONNEL MANAGEMENT STYLES ===== */
+
+ .personnel-section {
+    background: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--color-accent);
+}
+
+.btn-personnel {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-personnel:hover {
+    background-color: #e91e63;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.personnel-management {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 0.5rem;
+}
+
+.management-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.management-header h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.management-header p {
+    color: var(--color-muted);
+    font-size: 1rem;
+}
+
+.employees-table-container {
+    background: var(--color-surface);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.employees-table th {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+.employees-table td {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.employees-table tr:last-child td {
+    border-bottom: none;
+}
+
+.employees-table tr:hover {
+    background-color: var(--color-surface-alt);
+}
+
+/* Badges */
+.account-type-badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.account-type-badge.admin {
+    background-color: var(--color-error);
+    color: white;
+}
+
+.account-type-badge.employee {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.account-type-badge.client {
+    background-color: var(--color-muted);
+    color: white;
+}
+
+.staff-status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.staff-status.staff {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.staff-status.non-staff {
+    background-color: var(--color-warning);
+    color: white;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.btn-toggle, 
+.btn-promote, 
+.btn-demote {
+    padding: 0.4rem 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    min-width: 100px;
+}
+
+.btn-promote, 
+.btn-toggle:not(.btn-demote) {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.btn-promote:hover, 
+.btn-toggle:not(.btn-demote):hover {
+    background-color: #388e3c;
+    transform: translateY(-1px);
+}
+
+.btn-demote {
+    background-color: var(--color-warning);
+    color: white;
+}
+
+.btn-demote:hover {
+    background-color: #f57c00;
+    transform: translateY(-1px);
+}
+
+.no-employees {
+    text-align: center;
+    padding: 3rem;
+    background: var(--color-surface);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.no-employees p {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+}
+
+.management-actions {
+    text-align: center;
+}

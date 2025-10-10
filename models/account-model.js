@@ -60,4 +60,46 @@ async function updateAccountPassword(account_id, account_password) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountData, updateAccountPassword }
+async function getAllEmployeesAndClients() {
+  try {
+    const sql = `SELECT account_id, account_firstname, account_lastname, 
+                        account_email, account_type, is_staff 
+                 FROM account 
+                 WHERE account_type IN ('Employee', 'Client')
+                 ORDER BY account_type, account_firstname`;
+    const result = await pool.query(sql);
+    return result.rows;
+  } catch (error) {
+    console.error("Error getting employees and clients:", error);
+    return [];
+  }
+}
+
+async function updateStaffStatus(account_id, is_staff) {
+  try {
+    const sql = `UPDATE account 
+                 SET is_staff = $1 
+                 WHERE account_id = $2`;
+    const result = await pool.query(sql, [is_staff, account_id]);
+    return result.rowCount > 0;
+  } catch (error) {
+    console.error("Error updating staff status:", error);
+    return false;
+  }
+}
+
+
+async function updateAccountType(account_id, account_type) {
+  try {
+    const sql = `UPDATE account 
+                 SET account_type = $1 
+                 WHERE account_id = $2`;
+    const result = await pool.query(sql, [account_type, account_id]);
+    return result.rowCount > 0;
+  } catch (error) {
+    console.error("Error updating account type:", error);
+    return false;
+  }
+}
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountData, updateAccountPassword, getAllEmployeesAndClients, updateStaffStatus, updateAccountType }
